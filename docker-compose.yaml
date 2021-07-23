@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  sql:
+    container_name: xmpp_db
+    image: postgres
+    restart: always
+    env_file: .db.env
+    ports:
+      - '5432:5432'
+    volumes:
+      - './docker-volumes/db/postgresql:/var/lib/postgresql/prosody'
+
+  xmpp_server:
+    container_name: xmpp
+    # image: unclev/prosody-docker-extended:0.10
+    image: sameersbn/openfire
+    restart: unless-stopped
+    hostname: shakespeare.lit
+    ports:
+      # - 5222:5222
+      # - 5269:5269
+      # - 5347:5347
+      # - 5280:5280
+      - "9090:9090"
+      - "5222:5222"
+      - "7777:7777"
+    env_file: .xmpp.env
+    links: 
+      - sql:sql
+    volumes:
+      - ./docker-volumes/openfire:/var/lib/openfire
+      # - './docker-volumes/prosody/config:/etc/prosody'
+      # - './docker-volumes/prosody/data:/var/lib/prosody'
+      # - './docker-volumes/prosody/log:/var/log/prosody'
+      # - './docker-volumes/prosody/modules/community:/usr/lib/prosody/modules-community'
+      # - './docker-volumes/prosody/modules/custom:/usr/lib/prosody/modules-custom'
