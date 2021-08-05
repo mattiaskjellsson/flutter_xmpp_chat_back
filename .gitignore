@@ -1,2 +1,8 @@
-.*.env
+# compiled output
+dist/
+node_modules/
 docker-volumes/
+
+.env
+.db.env
+.xmpp.env
