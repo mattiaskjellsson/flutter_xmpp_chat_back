@@ -13,13 +13,13 @@ export class AppController {
   @Post('/:name')
   public async setKeys(
     @Param('name') name: string,
-    @Body('keys') keys: string,
+    @Body('keys') keys: KeysDTO,
   ): Promise<void> {
     return await this.appService.setKeys(name, keys);
   }
 
   @Get('/:name')
-  public async getKeys(@Param('name') name): Promise<string> {
+  public async getKeys(@Param('name') name): Promise<KeysDTO> {
     return await this.appService.getKeys(name);
   }
 }
