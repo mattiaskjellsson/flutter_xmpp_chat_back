@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { KeysDTO } from './keys.dto';
 
 @Injectable()
 export class AppService {

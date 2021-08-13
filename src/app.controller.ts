@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
+import { KeysDTO } from './keys.dto';
 
 @Controller()
 export class AppController {
@@ -13,9 +14,10 @@ export class AppController {
   @Post('/:name')
   public async setKeys(
     @Param('name') name: string,
-    @Body('keys') keys: KeysDTO,
+    @Body('keys') body: KeysDTO,
   ): Promise<void> {
-    return await this.appService.setKeys(name, keys);
+    console.log(`Body of post: ${body}`);
+    return await this.appService.setKeys(name, body);
   }
 
   @Get('/:name')

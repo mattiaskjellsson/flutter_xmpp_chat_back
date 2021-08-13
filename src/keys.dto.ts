@@ -1,4 +1,4 @@
-interface KeysDTO {
+export interface KeysDTO {
   readonly username: string;
   readonly identityKeyPair: string;
   readonly deviceId: string;
